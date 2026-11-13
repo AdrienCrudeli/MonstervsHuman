@@ -10,7 +10,7 @@ Final result: **88.8% validation accuracy**, macro F1 0.885, on 143 validation i
 
 The classifier uses MobileNetV2 pretrained on ImageNet, with the convolutional base frozen and a
 small head on top (global average pooling, a 128-unit dense layer, dropout at 0.3, softmax over
-four classes). Only the head is trained — 2.4M total parameters, of which very few are trainable.
+four classes). Only the head is trained, 2.4M total parameters, of which very few are trainable.
 
 Transfer learning is the only reasonable choice here. With 253 training images, training a
 convolutional network from scratch would overfit immediately, whereas MobileNetV2 already knows
@@ -23,7 +23,7 @@ patience of 5, and a checkpoint that keeps the best weights rather than the last
 
 `crawler.py` builds it. It queries Bing Images through `icrawler` with one search string per class
 and downloads 150 training and 40 validation images each. The raw download is noisy — wrong
-subjects, duplicates, broken files — so everything was reviewed and cleaned by hand afterwards.
+subjects, duplicates, broken files, so everything was reviewed and cleaned by hand afterwards.
 
 What survives: **396 images**, 253 for training and 143 for validation, roughly balanced across
 the four classes.
@@ -62,12 +62,12 @@ device.
 
 ## Files
 
-| File | Role |
-| --- | --- |
+|           File         |                       Role                       |
+| -----------------------| ------------------------------------------------ |
 | `MonsterVsHuman.ipynb` | Dataset exploration, model, training, evaluation |
-| `crawler.py` | Builds the dataset from Bing Images |
-| `webcam_demo.py` | Live inference on a webcam feed |
-| `zombienet_best.keras` | Best checkpoint from training |
+| `crawler.py`           | Builds the dataset from Bing Images              |
+| `webcam_demo.py`       | Live inference on a webcam feed                  |
+| `zombienet_best.keras` | Best checkpoint from training                    |
 
 ## Notes
 
